@@ -62,9 +62,9 @@ module.exports = app;
 app.listen(3000);
 
 // satellite.js
-var satellite=require('satellite.js');
-
-
+//var satellite=require('satellite.js');
+var satellite=require('./public/satellite.js').satellite;
+console.log(satellite.twoline2satrec)
 /*cesium
 var Cesium = require('cesium');
 */
@@ -122,10 +122,23 @@ const a = new XmlUrlParser({
   selector: 'item'
 });
 */
-fs.readFile('public/science.txt', 'utf8', function(err, data) {
+
+var texto=fs.readFile('public/science.txt', 'utf8', function(err, data) {
     if (err) throw err;
-    console.log(data);
+    var obj=data.split("\r\n");
+    var list=[];
+    var sat, satrec;
+    for(var fila=0;fila<obj.length;fila+=3){
+      sat = {
+        id: obj[fila],
+        satrec : satellite.twoline2satrec(obj[fila+1], obj[fila+2]),
+        posvel : satellite.sgp4(satrec, 1982)
+      };
+      list.push(sat)
+    }
+    console.log(list);
 });
+
 
 /*
 var TLE = require( 'tle' );
