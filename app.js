@@ -65,22 +65,70 @@ app.listen(3000);
 var satellite=require('satellite.js');
 
 
-//cesium
+/*cesium
 var Cesium = require('cesium');
+*/
 
-//xml
+
+
+/*
+var fs = require('fs'),
+    xml2js = require('xml2js');
+var parser = new xml2js.Parser();
+fs.readFile('https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities.xml', function(err, data) {
+    console.log(parser.parseString(data));
+});
+*/
+/*
+var xml2js = require('xml2js');
+var parser = new xml2js.Parser();
+
+parser.on('error', function(err) { console.log('Parser error', err); });
+app.get('https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities.xml', function(res) {
+
+       res.on('data', function(data_) { data += data_.toString(); });
+       res.on('end', function() {
+         console.log('data', data);
+         parser.parseString(data, function(err, result) {
+           console.log('FINISHED', err, result);
+         });
+       });
+
+   });
+*/
+
+
 var fs = require('fs'),
     xml2js = require('xml2js');
 
 var parser = new xml2js.Parser();
-fs.readFile(__dirname + '/foo.xml', function(err, data) {
+fs.readFile('public/WMTSCapabilities.xml', function(err, data) {
     parser.parseString(data, function (err, result) {
-        console.dir(result);
-        console.log('Done');
+
+        console.log(result);
     });
 });
 
-/*tle
+/*
+var xml = require('xml');
+var xmlObject = [ { url: 'https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities.xml' } ];
+console.log(xml(xmlObject));
+*/
+/*
+const XmlUrlParser = require('xml-url-parser');
+
+const a = new XmlUrlParser({
+  url: 'https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabilities.xml',
+  selector: 'item'
+});
+*/
+fs.readFile('public/science.txt', 'utf8', function(err, data) {
+    if (err) throw err;
+    console.log(data);
+});
+
+/*
 var TLE = require( 'tle' );
 
 var tle = TLE.parse( set );
+*/

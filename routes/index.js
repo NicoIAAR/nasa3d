@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-/*celestrak
+//celestrak
 var Satcat = require( 'Satcat' );
 var parser = new Satcat.Parser()
   .on( 'data', function( satellite ) {
@@ -18,10 +18,9 @@ var parser = new Satcat.Parser()
 
 router.get( 'http://www.celestrak.com/pub/satcat.txt', function( response ) {
   if( response.statusCode === 200 ) {
-    response.pipe( parser )
+    console.log(response.pipe( parser ))
   } else {
     console.log( 'HTTP', response.statusCode )
     process.exit( 1 )
   }
 })
-*/
