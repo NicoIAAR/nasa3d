@@ -127,7 +127,7 @@ const a = new XmlUrlParser({
   selector: 'item'
 });
 */
-
+/*
 var texto=fs.readFile('public/science.txt', 'utf8', function(err, data) {
     if (err) throw err;
     var obj=data.split("\r\n");
@@ -146,7 +146,7 @@ var texto=fs.readFile('public/science.txt', 'utf8', function(err, data) {
     }
     console.log(list);
 });
-
+*/
 
 /*
 var TLE = require( 'tle' );
