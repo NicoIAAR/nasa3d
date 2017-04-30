@@ -30,11 +30,9 @@ $.get('./public/science.txt', function(err, data) {
                   for(var fila=0;fila<obj.length;fila+=3){
                     sat = {
                       id: obj[fila],
-                      satrec : obj[fila+1],
-                      posvel : obj[fila+2],
                       satrec : satellite.twoline2satrec(obj[fila+1], obj[fila+2]),
-                      posvel : satellite.propagate(satrec, new Date())
                     };
+                    sat.posvel = satellite.propagate(sat.satrec, new Date())
                     list.push(sat)
                   }
                   console.log(list);
