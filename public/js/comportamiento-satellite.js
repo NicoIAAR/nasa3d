@@ -33,7 +33,7 @@ $.get('./public/science.txt', function(err, data) {
                       satrec : obj[fila+1],
                       posvel : obj[fila+2],
                       satrec : satellite.twoline2satrec(obj[fila+1], obj[fila+2]),
-                      posvel : satellite.sgp4(satrec, 1982)
+                      posvel : satellite.propagate(satrec, new Date())
                     };
                     list.push(sat)
                   }
