@@ -63,11 +63,13 @@ app.listen(3000);
 
 // satellite.js
 //var satellite=require('satellite.js');
-var satellite=require('./public/satellite.js').satellite;
-console.log(satellite.twoline2satrec)
-/*cesium
+//var satellite=require('./public/satellite.js').satellite;
+//console.log(satellite.twoline2satrec);
+
+
+
 var Cesium = require('cesium');
-*/
+var jquery= require('jquery');
 
 
 
@@ -79,8 +81,9 @@ fs.readFile('https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabi
     console.log(parser.parseString(data));
 });
 */
-/*
+
 var xml2js = require('xml2js');
+/*
 var parser = new xml2js.Parser();
 
 parser.on('error', function(err) { console.log('Parser error', err); });
@@ -98,13 +101,15 @@ app.get('https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/1.0.0/WMTSCapabiliti
 */
 
 
-var fs = require('fs'),
-    xml2js = require('xml2js');
+var fs = require('fs');
 
 var parser = new xml2js.Parser();
-fs.readFile('public/WMTSCapabilities.xml', function(err, data) {
+fs.readFile('public/GHRSST_L4_G1SST_Sea_Surface_Temperature.xml', function(err, data) {
+//fs.readFile('public/WMTSCapabilities.xml', function(err, data) {
     parser.parseString(data, function (err, result) {
-
+        if(err){
+          console.log("hay un error");
+        }
         console.log(result);
     });
 });
@@ -131,8 +136,11 @@ var texto=fs.readFile('public/science.txt', 'utf8', function(err, data) {
     for(var fila=0;fila<obj.length;fila+=3){
       sat = {
         id: obj[fila],
-        satrec : satellite.twoline2satrec(obj[fila+1], obj[fila+2]),
-        posvel : satellite.sgp4(satrec, 1982)
+        satrec : obj[fila+1],
+        posvel : obj[fila+2]
+        //,
+        //satrec : satellite.twoline2satrec(obj[fila+1], obj[fila+2]),
+        //posvel : satellite.sgp4(satrec, 1982)
       };
       list.push(sat)
     }

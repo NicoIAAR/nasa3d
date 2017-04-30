@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  #map
+  #slider(style='display: none;')
+  #satellite-toolbar(style='display: none;')
+    #satellite-instruments
+    #satellite-instrument-layers
+  script(src='/js/Cesium.js')
+  script(src='/js/tilling-scheme.js')
+  script(src='/js/main.js')
+  script(src='/js/satellite.js')

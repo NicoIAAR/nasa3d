@@ -1,7 +1,20 @@
 doctype html
 html
   head
-    title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    title GEO
+
+    script(type='text/javascript', src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js')
+    // Compiled and minified CSS
+    //link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css')
+    link(rel='stylesheet', src='css/widgets.css')
+    link(rel='stylesheet', src='css/main.css')
+    link(rel='stylesheet', src='css/satellite.css')
+    // Compiled and minified JavaScript
+    //script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js')
+    style.
+      @import url(css/widgets.css);
+      @import url(css/main.css);
+      @import url(css/satellite.css);
   body
     block content
